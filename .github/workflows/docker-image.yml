@@ -1,0 +1,21 @@
+name: Docker Image Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .  # 你的 Dockerfile 所在的目录
+          push: true # 是否推送到 Docker Hub
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/free-one-api:latest # 你的 Docker Hub 镜像名和版本

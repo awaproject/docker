@@ -1,0 +1,12 @@
+tasks:
+  - init: |
+      sudo apt-get update
+      sudo apt-get install -y docker.io docker-compose
+      sudo systemctl start docker
+      sudo usermod -aG docker gitpod
+  - command: |
+      docker-compose up -d
+
+ports:
+  - port: 3000
+    onOpen: open-preview
